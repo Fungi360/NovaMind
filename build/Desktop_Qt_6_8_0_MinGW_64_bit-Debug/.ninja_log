@@ -1,0 +1,9 @@
+# ninja log v6
+25	2495	7528800707949754	NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+25	2495	7528800707949754	NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+25	2495	7528800707949754	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+25	2495	7528800707949754	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+2500	4281	7528800708507151	CMakeFiles/NovaMindMaster.dir/NovaMindMaster_autogen/mocs_compilation.cpp.obj	9990ab21557ae298
+2506	4284	7528800708567136	CMakeFiles/NovaMindMaster.dir/mainwindow.cpp.obj	87176768c9ac6657
+2503	4291	7528800708537116	CMakeFiles/NovaMindMaster.dir/main.cpp.obj	f473db33d91ab8c8
+4291	4603	7528800726413722	NovaMindMaster.exe	abf4bc7ed52736cb
