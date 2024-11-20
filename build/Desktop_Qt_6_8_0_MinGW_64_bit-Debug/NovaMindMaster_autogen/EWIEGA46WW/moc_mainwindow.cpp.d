@@ -1,5 +1,6 @@
 C:/Users/aidan/OneDrive/Documents/FGCU/Fall\ 2024/Programming\ 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/aidan/OneDrive/Documents/FGCU/Fall\ 2024/Programming\ 2/NovaMind/NovaMindMaster/mainwindow.h \
   C:/Users/aidan/OneDrive/Documents/FGCU/Fall\ 2024/Programming\ 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/moc_predefs.h \
+  C:/Qt/6.8.0/mingw_64/include/QtCore/QDebug \
   C:/Qt/6.8.0/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.0/mingw_64/include/QtCore/q20iterator.h \
   C:/Qt/6.8.0/mingw_64/include/QtCore/q20memory.h \
@@ -120,6 +121,7 @@ C:/Users/aidan/OneDrive/Documents/FGCU/Fall\ 2024/Programming\ 2/NovaMind/NovaMi
   C:/Qt/6.8.0/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.8.0/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.8.0/mingw_64/include/QtCore/qyieldcpu.h \
+  C:/Qt/6.8.0/mingw_64/include/QtGui/QAction \
   C:/Qt/6.8.0/mingw_64/include/QtGui/qaction.h \
   C:/Qt/6.8.0/mingw_64/include/QtGui/qbitmap.h \
   C:/Qt/6.8.0/mingw_64/include/QtGui/qbrush.h \
@@ -146,9 +148,16 @@ C:/Users/aidan/OneDrive/Documents/FGCU/Fall\ 2024/Programming\ 2/NovaMind/NovaMi
   C:/Qt/6.8.0/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.0/mingw_64/include/QtGui/qwindowdefs_win.h \
   C:/Qt/6.8.0/mingw_64/include/QtWidgets/QMainWindow \
+  C:/Qt/6.8.0/mingw_64/include/QtWidgets/QMenu \
+  C:/Qt/6.8.0/mingw_64/include/QtWidgets/QPushButton \
+  C:/Qt/6.8.0/mingw_64/include/QtWidgets/QToolButton \
+  C:/Qt/6.8.0/mingw_64/include/QtWidgets/qabstractbutton.h \
   C:/Qt/6.8.0/mingw_64/include/QtWidgets/qmainwindow.h \
+  C:/Qt/6.8.0/mingw_64/include/QtWidgets/qmenu.h \
+  C:/Qt/6.8.0/mingw_64/include/QtWidgets/qpushbutton.h \
   C:/Qt/6.8.0/mingw_64/include/QtWidgets/qsizepolicy.h \
   C:/Qt/6.8.0/mingw_64/include/QtWidgets/qtabwidget.h \
+  C:/Qt/6.8.0/mingw_64/include/QtWidgets/qtoolbutton.h \
   C:/Qt/6.8.0/mingw_64/include/QtWidgets/qtwidgets-config.h \
   C:/Qt/6.8.0/mingw_64/include/QtWidgets/qtwidgetsexports.h \
   C:/Qt/6.8.0/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
