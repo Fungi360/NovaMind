@@ -82,7 +82,7 @@
       <rect>
        <x>10</x>
        <y>100</y>
-       <width>486</width>
+       <width>498</width>
        <height>41</height>
       </rect>
      </property>
@@ -130,23 +130,32 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_Calculus">
+       <widget class="QToolButton" name="toolButton_Calculus">
         <property name="text">
          <string>Calculus</string>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_Graph">
-        <property name="text">
-         <string>Graph</string>
+        <property name="popupMode">
+         <enum>QToolButton::ToolButtonPopupMode::InstantPopup</enum>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_Symbols">
+       <widget class="QToolButton" name="toolButton_Graph">
+        <property name="text">
+         <string>Graph</string>
+        </property>
+        <property name="popupMode">
+         <enum>QToolButton::ToolButtonPopupMode::InstantPopup</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_Symbols">
         <property name="text">
          <string>Symbols</string>
+        </property>
+        <property name="popupMode">
+         <enum>QToolButton::ToolButtonPopupMode::InstantPopup</enum>
         </property>
        </widget>
       </item>

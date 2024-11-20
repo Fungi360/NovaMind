@@ -28,8 +28,9 @@ private slots:
     void onArithmeticSelected(const QString &operation); // Slot for dropdown menu actions
     void onAlgebraSelected(const QString &operation); // Slot for dropdown menu actions
     void onTrigonometrySelected(const QString &operation);  // Trigonometry slot
-  //  void onCalculusSelected(const QString &operation);  // Trigonometry slot
-   // void onSymbolsSelected(const QString &operation);  // Trigonometry slot
+    void onCalculusSelected(const QString &operation);  // Calculus slot
+     void onGraphSelected(const QString &operation);  // Graph slot
+    void onSymbolSelected(const QString &symbol);
 
 private:
     Ui::MainWindow *ui;
