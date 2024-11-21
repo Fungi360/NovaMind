@@ -7,6 +7,11 @@
 #include <QPushButton>
 #include <QAction>
 #include <QDebug>
+#include <QMainWindow>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QJsonObject>
+#include <QJsonArray>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -31,11 +36,18 @@ private slots:
     void onCalculusSelected(const QString &operation);  // Calculus slot
      void onGraphSelected(const QString &operation);  // Graph slot
     void onSymbolSelected(const QString &symbol);
+    // void onQuerySubmitted();
+     void onQueryResult(QNetworkReply *reply);  // Slot for handling API responses
+     void onSubmitButtonclicked();// Slot for submitting queries
+      void displayGraph(const QString &imageUrl); // Display the graph image
 
-private:
+ private:
     Ui::MainWindow *ui;
     void setupConnections(); // Helper to connect signals to slots
     void setupDropdownMenus(); // Set up dropdown menus
-};
+    void processApiResponse(const QJsonObject &jsonObj);  // Function to parse and handle API results};
+    QNetworkAccessManager *networkManager;
+    void sendQueryToAPI(const QString &query);
 
+};
 #endif // MAINWINDOW_H

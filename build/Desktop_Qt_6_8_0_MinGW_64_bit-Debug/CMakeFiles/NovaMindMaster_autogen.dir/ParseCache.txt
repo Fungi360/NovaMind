@@ -2,11 +2,23 @@
 C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/mainwindow.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/QDebug
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/QFlags
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/QIODevice
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/QJsonArray
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/QJsonObject
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/QList
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/QMetaType
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/QObject
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/QSharedDataPointer
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/QString
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/QUrl
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/QVariant
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/q20functional.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/q20iterator.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/q20memory.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/q20type_traits.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/q23utility.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/q26numeric.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qalgorithms.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qanystringview.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qarraydata.h
@@ -21,6 +33,9 @@ C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMind
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qbytearrayalgorithms.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qbytearraylist.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qbytearrayview.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qcalendar.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qcborcommon.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qcborvalue.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qchar.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qcompare.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qcompare_impl.h
@@ -32,8 +47,10 @@ C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMind
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qcontainerinfo.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qcontainertools_impl.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qcontiguouscache.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qcryptographichash.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qdarwinhelpers.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qdatastream.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qdatetime.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qdebug.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qendian.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qexceptionhandling.h
@@ -47,12 +64,17 @@ C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMind
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qglobalstatic.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qhash.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qhashfunctions.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qiodevice.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qiodevicebase.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qiterable.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qiterator.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qjsonarray.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qjsonobject.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qjsonvalue.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qlatin1stringview.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qline.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qlist.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qlocale.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qlogging.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qmalloc.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qmap.h
@@ -73,6 +95,7 @@ C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMind
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qrect.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qrefcount.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qregularexpression.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qscopedpointer.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qscopeguard.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qset.h
@@ -116,7 +139,9 @@ C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMind
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qtversionchecks.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qtypeinfo.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qtypes.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qurl.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qutf8stringview.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/quuid.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qvariant.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qvarlengtharray.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtCore/qversiontagging.h
@@ -148,6 +173,27 @@ C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMind
  mdp:C:/Qt/6.8.0/mingw_64/include/QtGui/qtransform.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtGui/qwindowdefs.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtGui/qwindowdefs_win.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/QNetworkAccessManager
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/QNetworkReply
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/QNetworkRequest
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/QSslConfiguration
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/QSslPreSharedKeyAuthenticator
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qabstractsocket.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qhostaddress.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qhttpheaders.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qnetworkaccessmanager.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qnetworkreply.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qnetworkrequest.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qssl.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qsslcertificate.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qsslconfiguration.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qsslerror.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qsslpresharedkeyauthenticator.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qsslsocket.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qtcpsocket.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qtnetwork-config.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qtnetworkexports.h
+ mdp:C:/Qt/6.8.0/mingw_64/include/QtNetwork/qtnetworkglobal.h
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/QMainWindow
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/QMenu
  mdp:C:/Qt/6.8.0/mingw_64/include/QtWidgets/QPushButton

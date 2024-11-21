@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-3d25ad830241cca8c27b.json",
+					"jsonFile" : "directory-.-Debug-3dcd578af40669880723.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "NovaMindMaster::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-NovaMindMaster-Debug-72346bee9482b99fa3ba.json",
+					"jsonFile" : "target-NovaMindMaster-Debug-dcb90523adbb3c03bcc3.json",
 					"name" : "NovaMindMaster",
 					"projectIndex" : 0
 				},

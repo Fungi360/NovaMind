@@ -1065,6 +1065,151 @@
 			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsVersionlessAliasTargets.cmake"
 		},
 		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersionImpl.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6NetworkDependencies.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6NetworkTargets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6NetworkTargets-relwithdebinfo.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6NetworkPlugins.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginConfig.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginTargets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginTargets-relwithdebinfo.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QNLMNIPluginAdditionalTargetInfo.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginConfig.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginTargets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginTargets-relwithdebinfo.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QSchannelBackendPluginAdditionalTargetInfo.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginConfig.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets-relwithdebinfo.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginAdditionalTargetInfo.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginConfig.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets-relwithdebinfo.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginAdditionalTargetInfo.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6NetworkVersionlessAliasTargets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Users/aidan/vcpkg/installed/x64-windows/share/tinyxml2/tinyxml2-config-version.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Users/aidan/vcpkg/installed/x64-windows/share/tinyxml2/tinyxml2-config.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Users/aidan/vcpkg/installed/x64-windows/share/tinyxml2/tinyxml2-shared-targets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Users/aidan/vcpkg/installed/x64-windows/share/tinyxml2/tinyxml2-shared-targets-debug.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "C:/Users/aidan/vcpkg/installed/x64-windows/share/tinyxml2/tinyxml2-shared-targets-release.cmake"
+		},
+		{
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "C:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/GNUInstallDirs.cmake"
