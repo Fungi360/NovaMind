@@ -20,6 +20,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     connect(ui->pushButton_Add, &QPushButton::clicked, this, &MainWindow::onOperatorButtonClicked);
 
+    // Connect the SubmitButton to the slot
+    connect(ui->SubmitButton, &QPushButton::clicked, this, &MainWindow::onSubmitButtonclicked);
+
     // Initialize networkManager and connect to onQueryResult slot
     networkManager = new QNetworkAccessManager(this);
     connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::onQueryResult);
@@ -225,12 +228,15 @@ void MainWindow::onSymbolSelected(const QString &operation)
 
 void MainWindow::onSubmitButtonclicked()
 {
-    QString queryText = ui->EquationEdit->toPlainText();
+    qDebug() << "Submit button clicked!";
 
+    QString queryText = ui->EquationEdit->toPlainText();
     if (queryText.isEmpty()) {
         qDebug() << "Query is empty. Cannot process.";
         return;
     }
+
+    qDebug() << "Query text: " << queryText;
 
     // Send the query to WolframAlpha API
     sendQueryToAPI(queryText);
@@ -366,7 +372,12 @@ void MainWindow::sendQueryToAPI(const QString &query)
     // Create a network request with the URL
     QNetworkRequest request(apiUrl);
 
+    // Debugging: Log the request URL
+    qDebug() << "Request URL: " << apiUrl.toString();
+
     // Send the request using networkManager
     networkManager->get(request);
 }
+
+
 
