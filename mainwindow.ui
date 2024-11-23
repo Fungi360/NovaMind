@@ -43,7 +43,7 @@
       <rect>
        <x>20</x>
        <y>60</y>
-       <width>481</width>
+       <width>471</width>
        <height>31</height>
       </rect>
      </property>
@@ -69,15 +69,12 @@
      <property name="text">
       <string>Submit</string>
      </property>
-     <property name="default">
-      <bool>false</bool>
-     </property>
     </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>35</y>
+       <x>20</x>
+       <y>40</y>
        <width>161</width>
        <height>21</height>
       </rect>
@@ -86,12 +83,75 @@
       <string>Input Math Equation:</string>
      </property>
     </widget>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>150</y>
+       <width>491</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QWidget" name="widget" native="true"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QFrame" name="OutputFrame">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>280</y>
+       <width>511</width>
+       <height>241</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <widget class="QLabel" name="ResultLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>511</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Solution:</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ResultImageLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>85</y>
+        <width>511</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Graph:</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>100</y>
-       <width>498</width>
+       <y>90</y>
+       <width>491</width>
        <height>41</height>
       </rect>
      </property>
@@ -170,77 +230,20 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="gridLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>150</y>
-       <width>491</width>
-       <height>80</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QWidget" name="widget" native="true"/>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QFrame" name="OutputFrame">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>280</y>
-       <width>511</width>
-       <height>241</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::Shape::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Raised</enum>
-     </property>
-     <widget class="QLabel" name="ResultLabel">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>10</y>
-        <width>501</width>
-        <height>81</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Number Results</string>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="ResultImageLabel">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>105</y>
-        <width>491</width>
-        <height>131</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Graph</string>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
     <widget class="QLabel" name="Title">
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>10</y>
-       <width>201</width>
-       <height>16</height>
+       <x>150</x>
+       <y>-10</y>
+       <width>191</width>
+       <height>61</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Stencil</family>
+       <pointsize>28</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>NovaMind</string>
@@ -249,19 +252,6 @@
       <enum>Qt::TextFormat::AutoText</enum>
      </property>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="pushButton_Add">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>370</y>
-      <width>21</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>+</string>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

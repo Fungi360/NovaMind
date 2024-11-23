@@ -1,16 +1,46 @@
 # ninja log v6
-19	256	7540218954392498	NovaMindMaster_autogen/timestamp	e750a5ae5a781733
-258	5026	7540218956780383	CMakeFiles/NovaMindMaster.dir/mainwindow.cpp.obj	25b8ec5faa0da815
-19	256	7540218954392498	NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
-19	256	7540218954392498	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/timestamp	e750a5ae5a781733
-19	256	7540218954392498	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
-2460	9373	7539215894207347	CMakeFiles/NovaMindMaster.dir/NovaMindMaster_autogen/mocs_compilation.cpp.obj	d8b3d7835a5b3fa5
-2473	9035	7539215894342716	CMakeFiles/NovaMindMaster.dir/main.cpp.obj	2910a315b8bf6f01
-5027	5510	7540219004479900	NovaMindMaster.exe	f30aa08ba3aa845b
+16	198	7540783214614460	NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+200	4271	7540783216458390	CMakeFiles/NovaMindMaster.dir/mainwindow.cpp.obj	25b8ec5faa0da815
+16	198	7540783214614460	NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+16	198	7540783214614460	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+16	198	7540783214614460	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+629	3040	7540777863732821	CMakeFiles/NovaMindMaster.dir/NovaMindMaster_autogen/mocs_compilation.cpp.obj	d8b3d7835a5b3fa5
+633	2990	7540777863772815	CMakeFiles/NovaMindMaster.dir/main.cpp.obj	2910a315b8bf6f01
+4273	4599	7540783257184851	NovaMindMaster.exe	f30aa08ba3aa845b
 33	2019	7539202423485049	build.ninja	9cf4159551590b4
-25	348	7540221350416053	NovaMindMaster_autogen/timestamp	e750a5ae5a781733
-25	348	7540221350416053	NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
-25	348	7540221350416053	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/timestamp	e750a5ae5a781733
-25	348	7540221350416053	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
-350	5252	7540221353663131	CMakeFiles/NovaMindMaster.dir/mainwindow.cpp.obj	25b8ec5faa0da815
-5252	5757	7540221402677120	NovaMindMaster.exe	f30aa08ba3aa845b
+61	285	7540784076003157	NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+61	285	7540784076003157	NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+61	285	7540784076003157	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+61	285	7540784076003157	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+288	4714	7540784078270664	CMakeFiles/NovaMindMaster.dir/mainwindow.cpp.obj	25b8ec5faa0da815
+4714	5281	7540784122530030	NovaMindMaster.exe	f30aa08ba3aa845b
+26	223	7540790943602811	NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+26	223	7540790943602811	NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+26	223	7540790943602811	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+26	223	7540790943602811	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+224	5768	7540790945578521	CMakeFiles/NovaMindMaster.dir/mainwindow.cpp.obj	25b8ec5faa0da815
+5770	6174	7540791001029729	NovaMindMaster.exe	f30aa08ba3aa845b
+16	213	7540792808757958	NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+16	213	7540792808757958	NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+16	213	7540792808757958	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+16	213	7540792808757958	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+215	4950	7540792810736593	CMakeFiles/NovaMindMaster.dir/mainwindow.cpp.obj	25b8ec5faa0da815
+4951	5387	7540792858096581	NovaMindMaster.exe	f30aa08ba3aa845b
+9	153	7540796606946381	NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+9	153	7540796606946381	NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+9	153	7540796606946381	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+9	153	7540796606946381	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+154	3331	7540796608400134	CMakeFiles/NovaMindMaster.dir/mainwindow.cpp.obj	25b8ec5faa0da815
+3332	3687	7540796640170987	NovaMindMaster.exe	f30aa08ba3aa845b
+12	184	7540797113638207	NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+12	184	7540797113638207	NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+12	184	7540797113638207	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+12	184	7540797113638207	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+186	3667	7540797115376289	CMakeFiles/NovaMindMaster.dir/mainwindow.cpp.obj	25b8ec5faa0da815
+3668	3998	7540797150197841	NovaMindMaster.exe	f30aa08ba3aa845b
+72	333	7540878444534498	NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+72	333	7540878444534498	NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+72	333	7540878444534498	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/timestamp	e750a5ae5a781733
+72	333	7540878444534498	C:/Users/aidan/OneDrive/Documents/FGCU/Fall 2024/Programming 2/NovaMind/NovaMindMaster/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/NovaMindMaster_autogen/mocs_compilation.cpp	e750a5ae5a781733
+334	5986	7540878447156414	CMakeFiles/NovaMindMaster.dir/mainwindow.cpp.obj	25b8ec5faa0da815
+5987	6489	7540878503680340	NovaMindMaster.exe	f30aa08ba3aa845b

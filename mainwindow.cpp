@@ -12,16 +12,21 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QFile>
+#include <QImageReader>
+#include <QMovie>
+#include <QLabel>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->pushButton_Add, &QPushButton::clicked, this, &MainWindow::onOperatorButtonClicked);
+    //connect(ui->pushButton_Add, &QPushButton::clicked, this, &MainWindow::onOperatorButtonClicked);
 
     // Connect the SubmitButton to the slot
     connect(ui->SubmitButton, &QPushButton::clicked, this, &MainWindow::onSubmitButtonclicked);
+
 
     // Initialize networkManager and connect to onQueryResult slot
     networkManager = new QNetworkAccessManager(this);
@@ -50,6 +55,7 @@ void MainWindow::setupConnections()
 
 void MainWindow::setupDropdownMenus()
 {
+
     // Arithmetic Menu
     QMenu *arithmeticMenu = new QMenu(this);
     QAction *addAction = new QAction("+", this);
@@ -168,6 +174,39 @@ void MainWindow::setupDropdownMenus()
 
     ui->toolButton_Calculus->setMenu(CalculusMenu);
     ui->toolButton_Calculus->setPopupMode(QToolButton::InstantPopup);
+
+    // Graph Menu
+    QMenu *GraphMenu = new QMenu(this);
+    QAction *GraphAction = new QAction("Graph", this);
+
+    GraphMenu->addAction(GraphAction);
+
+    connect(GraphAction, &QAction::triggered, this, [this]() {
+        onGraphSelected("Graph");
+    });
+
+    ui->toolButton_Graph->setMenu(GraphMenu);
+    ui->toolButton_Graph->setPopupMode(QToolButton::InstantPopup);
+
+
+    // Symbols Menu
+    QMenu *SymbolMenu = new QMenu(this);
+    QAction *πAction = new QAction("π", this);
+    QAction *SquareRootAction = new QAction("√()", this);
+
+    SymbolMenu->addAction(πAction);
+    SymbolMenu->addAction(SquareRootAction);
+
+    connect(πAction, &QAction::triggered, this, [this]() {
+        onGraphSelected("π");
+    });
+    connect(SquareRootAction, &QAction::triggered, this, [this]() {
+        onGraphSelected("√()");
+    });
+
+    ui->toolButton_Symbols->setMenu(SymbolMenu);
+    ui->toolButton_Symbols->setPopupMode(QToolButton::InstantPopup);
+
 }
 
 void MainWindow::onDigitButtonClicked()
@@ -241,116 +280,7 @@ void MainWindow::onSubmitButtonclicked()
     // Send the query to WolframAlpha API
     sendQueryToAPI(queryText);
 }
-/*
-void MainWindow::onQuerySubmitted()
-{
-    QString queryText = ui->EquationEdit->toPlainText();
 
-    if (queryText.isEmpty()) {
-        qDebug() << "Query is empty. Cannot process.";
-        return;
-    }
-
-    // For example, send the query to WolframAlpha API
-    sendQueryToAPI(queryText);
-}*/
-void MainWindow::onQueryResult(QNetworkReply *reply)
-{
-    if (reply->error() != QNetworkReply::NoError) {
-        qDebug() << "Network error: " << reply->errorString();
-        reply->deleteLater();
-        return;
-    }
-
-    // Parse the response
-    QByteArray responseData = reply->readAll();
-    QJsonDocument doc = QJsonDocument::fromJson(responseData);
-    QJsonObject jsonObj = doc.object();
-
-    qDebug() << "Parsed JSON Document: " << doc.toJson(QJsonDocument::Indented);
-
-    // Pass the response to the handler function
-    processApiResponse(jsonObj);
-
-    // Clean up
-    reply->deleteLater();
-}
-
-void MainWindow::processApiResponse(const QJsonObject &jsonObj)
-{
-    // Debugging: Log the API response to check if it contains "pods"
-    qDebug() << "API response contains 'pods': " << jsonObj.contains("pods");
-
-    // Check if the WolframAlpha API returned results
-    if (jsonObj.contains("queryresult") && jsonObj["queryresult"].isObject()) {
-        QJsonObject queryResult = jsonObj["queryresult"].toObject();
-
-        // Extract the result from the response
-        if (queryResult.contains("pods")) {
-            QJsonArray pods = queryResult["pods"].toArray();
-
-            // Loop through each pod to find the result and the graph
-            bool graphFound = false;
-            for (const QJsonValue &podValue : pods) {
-                QJsonObject pod = podValue.toObject();
-
-                if (pod.contains("title") && pod["title"].toString() == "Result") {
-                    if (pod.contains("subpods")) {
-                        QJsonArray subpods = pod["subpods"].toArray();
-                        if (!subpods.isEmpty()) {
-                            QString result = subpods[0].toObject()["plaintext"].toString();
-                            ui->ResultLabel->setText(result);  // Display the result
-                            qDebug() << "Result: " << result;
-                        }
-                    }
-                }
-
-                // Check for the graph in the response
-                if (pod.contains("title") && pod["title"].toString() == "Graph") {
-                    graphFound = true;
-                    if (pod.contains("subpods")) {
-                        QJsonArray subpods = pod["subpods"].toArray();
-                        if (!subpods.isEmpty()) {
-                            QJsonObject imageSubpod = subpods[0].toObject();
-                            QString imageUrl = imageSubpod["img"].toObject()["src"].toString();
-
-                            // Load and display the image if a graph is found
-                            displayGraph(imageUrl);
-                        }
-                    }
-                }
-            }
-
-            // If no graph is found, hide the graph area
-            if (!graphFound) {
-                ui->ResultImageLabel->setVisible(false);  // Hide the graph widget if no graph is available
-            }
-        }
-    }
-}
-
-void MainWindow::displayGraph(const QString &imageUrl) {
-    QUrl url(imageUrl);
-    QNetworkRequest request(url);
-
-    QNetworkReply *imageReply = networkManager->get(request);
-
-    connect(imageReply, &QNetworkReply::finished, this, [this, imageReply]() {
-        if (imageReply->error() == QNetworkReply::NoError) {
-            QByteArray imageData = imageReply->readAll();
-            QImage image;
-            if (image.loadFromData(imageData)) {
-                ui->ResultImageLabel->setPixmap(QPixmap::fromImage(image));
-                ui->ResultImageLabel->setVisible(true);  // Show image if it's loaded
-            } else {
-                qDebug() << "Error loading image.";
-            }
-        } else {
-            qDebug() << "Error loading graph: " << imageReply->errorString();
-        }
-        imageReply->deleteLater();
-    });
-}
 void MainWindow::sendQueryToAPI(const QString &query)
 {
     // URL encode the query
@@ -363,7 +293,7 @@ void MainWindow::sendQueryToAPI(const QString &query)
     QUrlQuery params;
     params.addQueryItem("input", encodedQuery);   // The query input (encoded)
     params.addQueryItem("appid", "3T3KQ7-9UT5PXLWH3");  // Your WolframAlpha App ID
-    params.addQueryItem("format", "plaintext,image");  // Request plaintext and image formats
+    params.addQueryItem("format", "plaintext,image,latex,raw");  // Request plaintext, image, latex, and raw formats
     params.addQueryItem("output", "JSON");  // Request JSON output
 
     // Set the query parameters on the URL
@@ -379,5 +309,163 @@ void MainWindow::sendQueryToAPI(const QString &query)
     networkManager->get(request);
 }
 
+
+void MainWindow::onQueryResult(QNetworkReply *reply)
+{
+    // Check for errors in the reply
+    if (reply->error() != QNetworkReply::NoError) {
+        qDebug() << "Network error:" << reply->errorString();
+        reply->deleteLater();
+        return;
+    }
+
+    // Get the raw JSON response
+    QByteArray responseData = reply->readAll();
+
+    // Debugging: Log the raw response data
+    qDebug() << "Raw API response data:" << responseData;
+
+    // Parse the JSON response into a QJsonDocument
+    QJsonDocument doc = QJsonDocument::fromJson(responseData);
+
+    if (!doc.isObject()) {
+        qDebug() << "Failed to parse JSON response.";
+        reply->deleteLater();
+        return;
+    }
+
+    // Convert the parsed document to a QJsonObject
+    QJsonObject jsonObj = doc.object();
+
+    // Process the API response
+    processApiResponse(jsonObj);
+
+    // Clean up the network reply
+    reply->deleteLater();
+}
+
+
+void MainWindow::processApiResponse(const QJsonObject &jsonObj)
+{
+    qDebug() << "Processing API response...";
+
+    // Check if "queryresult" object is present
+    if (jsonObj.contains("queryresult")) {
+        QJsonObject queryResult = jsonObj["queryresult"].toObject();
+
+        // Check if "pods" array is present
+        if (queryResult.contains("pods")) {
+            QJsonArray podsArray = queryResult["pods"].toArray();
+
+            QString plainTextResult;
+
+            QList<QString> graphImageUrls; // To store multiple graph images
+
+            // Iterate through the pods
+            for (const QJsonValue &podValue : podsArray) {
+                QJsonObject podObject = podValue.toObject();
+
+                // Log pod titles for debugging
+                if (podObject.contains("title")) {
+                    qDebug() << "Pod Title: " << podObject["title"].toString();
+                }
+
+                // Extract the "Result" pod for plain text
+                if (podObject.contains("title") && podObject["title"].toString() == "Result") {
+                    if (podObject.contains("subpods")) {
+                        QJsonArray subpodsArray = podObject["subpods"].toArray();
+                        for (const QJsonValue &subpodValue : subpodsArray) {
+                            QJsonObject subpodObject = subpodValue.toObject();
+                            if (subpodObject.contains("plaintext")) {
+                                plainTextResult = subpodObject["plaintext"].toString();
+                                qDebug() << "Plaintext Result: " << plainTextResult;
+                            }
+                        }
+                    }
+                }
+
+                // Extract the "Plot" or "Plots" pod for graph images
+                if (podObject.contains("title") &&
+                    (podObject["title"].toString() == "Plot" || podObject["title"].toString() == "Plots")) {
+
+                    if (podObject.contains("subpods")) {
+                        QJsonArray subpodsArray = podObject["subpods"].toArray();
+                        for (const QJsonValue &subpodValue : subpodsArray) {
+                            QJsonObject subpodObject = subpodValue.toObject();
+                            if (subpodObject.contains("img")) {
+                                QJsonObject imgObject = subpodObject["img"].toObject();
+                                QString graphImageUrl = imgObject["src"].toString();
+                                graphImageUrls.append(graphImageUrl);
+                                qDebug() << "Graph Image URL: " << graphImageUrl;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Display the plain text result if found
+            if (!plainTextResult.isEmpty()) {
+                ui->ResultLabel->setText("The solution is: "+plainTextResult);
+            }
+
+            // Display all graph images if found
+            if (!graphImageUrls.isEmpty()) {
+                for (const QString &url : graphImageUrls) {
+                    displayGraph(url); // Assuming displayGraph handles showing images
+                }
+            }
+
+            // If no results, show a message
+            if (plainTextResult.isEmpty() && graphImageUrls.isEmpty()) {
+                qDebug() << "No usable results found in response.";
+                ui->ResultLabel->setText("No results found.");
+            }
+        } else {
+            qDebug() << "No 'pods' found in response.";
+            ui->ResultLabel->setText("No results found.");
+        }
+    } else {
+        qDebug() << "No 'queryresult' found in response.";
+        ui->ResultLabel->setText("No results found.");
+    }
+}
+
+
+
+
+void MainWindow::displayGraph(const QString &imageUrl)
+{
+    // Check if the image URL is valid
+    qDebug() << "Displaying image from URL:" << imageUrl;
+
+    // Create a network request to fetch the image
+    QNetworkRequest request(imageUrl);
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+    QNetworkReply *reply = manager->get(request);
+
+    // Connect the finished signal to a lambda function to handle the response
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            // If there is no error, read the data and load the image
+            QByteArray imageData = reply->readAll();
+            QPixmap pixmap;
+            if (pixmap.loadFromData(imageData)) {
+                // Successfully loaded the image
+                ui->ResultImageLabel->setPixmap(pixmap);
+                ui->ResultImageLabel->setScaledContents(true);  // Optionally scale the image to fit the label
+                qDebug() << "Image loaded successfully!";
+            } else {
+                // Failed to load the image data
+                qDebug() << "Failed to load image from the received data";
+            }
+        } else {
+            // Handle error if the image failed to load
+            qDebug() << "Error loading image:" << reply->errorString();
+        }
+
+        // Clean up the reply object after use
+        reply->deleteLater();
+    });
+}
 
 
