@@ -45,6 +45,22 @@ CMakeLists.txt.user*
 # Vim temporary files
 .*.swp
 
+# Ignore build directories
+/build/
+/dist/
+/bin/
+/out/
+
+# Ignore CMake-specific files
+/CMakeFiles/
+/CMakeCache.txt
+
+# Ignore other system-specific build artifacts
+*.log
+*.cache
+*.temp
+
+
 # Visual Studio generated files
 *.ib_pdb_index
 *.idb

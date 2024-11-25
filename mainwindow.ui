@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>939</width>
-    <height>600</height>
+    <width>714</width>
+    <height>498</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>9000</width>
+    <height>90000</height>
+   </size>
   </property>
   <property name="mouseTracking">
    <bool>true</bool>
@@ -17,249 +23,182 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="Frame">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>20</y>
-      <width>511</width>
-      <height>521</height>
-     </rect>
-    </property>
-    <property name="mouseTracking">
-     <bool>false</bool>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Shadow::Raised</enum>
-    </property>
-    <widget class="QTextEdit" name="EquationEdit">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>60</y>
-       <width>471</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Sunken</enum>
-     </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustIgnored</enum>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="SubmitButton">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>260</y>
-       <width>75</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>Submit</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>40</y>
-       <width>161</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Input Math Equation:</string>
-     </property>
-    </widget>
-    <widget class="QWidget" name="gridLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>150</y>
-       <width>491</width>
-       <height>80</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QWidget" name="widget" native="true"/>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QFrame" name="OutputFrame">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>280</y>
-       <width>511</width>
-       <height>241</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::Shape::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Raised</enum>
-     </property>
-     <widget class="QLabel" name="ResultLabel">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>10</y>
-        <width>511</width>
-        <height>81</height>
-       </rect>
+   <layout class="QVBoxLayout" name="mainLayout">
+    <item>
+     <widget class="QFrame" name="Frame">
+      <property name="styleSheet">
+       <string notr="true">QFrame {
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+QPushButton {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}</string>
       </property>
-      <property name="text">
-       <string>Solution:</string>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
       </property>
-      <property name="scaledContents">
-       <bool>true</bool>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
       </property>
+      <layout class="QVBoxLayout" name="frameLayout">
+       <item>
+        <widget class="QLabel" name="Title">
+         <property name="font">
+          <font>
+           <family>Stencil</family>
+           <pointsize>28</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>NovaMind</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Input Math Equation:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="EquationEdit">
+         <property name="maximumSize">
+          <size>
+           <width>2200</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Sunken</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="buttonLayout">
+         <item>
+          <widget class="QToolButton" name="toolButton_Arithmetic">
+           <property name="text">
+            <string>Arithmetic</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton_Algebra">
+           <property name="text">
+            <string>Algebra</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton_Trigonometry">
+           <property name="text">
+            <string>Trigonometry</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton_Calculus">
+           <property name="text">
+            <string>Calculus</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton_Graph">
+           <property name="text">
+            <string>Graph</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton_Symbols">
+           <property name="text">
+            <string>Symbols</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QFrame" name="OutputFrame">
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="SubmitButton">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: #D3D3D3;
+    color: Black;
+    border: 1px solid #FFFFFF;
+    border-radius: 10px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: bold;
+}</string>
+         </property>
+         <property name="text">
+          <string>Submit</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="ResultLabel">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Solution:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="ResultImageLabel">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Graph:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLabel" name="ResultImageLabel">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>85</y>
-        <width>511</width>
-        <height>151</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Graph:</string>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="horizontalLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>90</y>
-       <width>491</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QToolButton" name="toolButton_Arithmetic">
-        <property name="contextMenuPolicy">
-         <enum>Qt::ContextMenuPolicy::ActionsContextMenu</enum>
-        </property>
-        <property name="text">
-         <string>Arithmetic</string>
-        </property>
-        <property name="checkable">
-         <bool>false</bool>
-        </property>
-        <property name="autoRepeat">
-         <bool>false</bool>
-        </property>
-        <property name="popupMode">
-         <enum>QToolButton::ToolButtonPopupMode::InstantPopup</enum>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonStyle::ToolButtonTextOnly</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="toolButton_Algebra">
-        <property name="text">
-         <string>Algebra</string>
-        </property>
-        <property name="popupMode">
-         <enum>QToolButton::ToolButtonPopupMode::InstantPopup</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="toolButton_Trigonometry">
-        <property name="text">
-         <string>Trigonometry</string>
-        </property>
-        <property name="popupMode">
-         <enum>QToolButton::ToolButtonPopupMode::InstantPopup</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="toolButton_Calculus">
-        <property name="text">
-         <string>Calculus</string>
-        </property>
-        <property name="popupMode">
-         <enum>QToolButton::ToolButtonPopupMode::InstantPopup</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="toolButton_Graph">
-        <property name="text">
-         <string>Graph</string>
-        </property>
-        <property name="popupMode">
-         <enum>QToolButton::ToolButtonPopupMode::InstantPopup</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="toolButton_Symbols">
-        <property name="text">
-         <string>Symbols</string>
-        </property>
-        <property name="popupMode">
-         <enum>QToolButton::ToolButtonPopupMode::InstantPopup</enum>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QLabel" name="Title">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>-10</y>
-       <width>191</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Stencil</family>
-       <pointsize>28</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>NovaMind</string>
-     </property>
-     <property name="textFormat">
-      <enum>Qt::TextFormat::AutoText</enum>
-     </property>
-    </widget>
-   </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>939</width>
+     <width>714</width>
      <height>22</height>
     </rect>
    </property>
