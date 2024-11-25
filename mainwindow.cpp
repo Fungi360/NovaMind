@@ -22,7 +22,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setCentralWidget(ui->centralwidget);
     //connect(ui->pushButton_Add, &QPushButton::clicked, this, &MainWindow::onOperatorButtonClicked);
 
     // Connect the SubmitButton to the slot
@@ -284,6 +283,14 @@ void MainWindow::onSubmitButtonclicked()
 
 void MainWindow::sendQueryToAPI(const QString &query)
 {
+
+    QString processedQuery = query;
+    processedQuery.replace("∫", "integral ");
+    processedQuery.replace("∑", "sum ");
+    processedQuery.replace("lim", "limit ");
+    processedQuery.replace("dx", " dx");
+    processedQuery.replace("f'(x)", "derivative ");
+
     // URL encode the query
     QString encodedQuery = QUrl::toPercentEncoding(query);
 
@@ -345,57 +352,93 @@ void MainWindow::onQueryResult(QNetworkReply *reply)
     reply->deleteLater();
 }
 
-
 void MainWindow::processApiResponse(const QJsonObject &jsonObj)
 {
     qDebug() << "Processing API response...";
 
-    // Check if "queryresult" object is present
     if (jsonObj.contains("queryresult")) {
         QJsonObject queryResult = jsonObj["queryresult"].toObject();
 
-        // Check if "pods" array is present
         if (queryResult.contains("pods")) {
             QJsonArray podsArray = queryResult["pods"].toArray();
 
             QString plainTextResult;
+            QString derivativeResult;
+            QString indefiniteIntegralResult;
+            QString definiteIntegralResult;
+            QString factoringResult;
+            QList<QString> graphImageUrls; // To store graph images
 
-            QList<QString> graphImageUrls; // To store multiple graph images
-
-            // Iterate through the pods
             for (const QJsonValue &podValue : podsArray) {
                 QJsonObject podObject = podValue.toObject();
+                QString podTitle = podObject["title"].toString();
+                QString podId = podObject["id"].toString();
 
-                // Log pod titles for debugging
-                if (podObject.contains("title")) {
-                    qDebug() << "Pod Title: " << podObject["title"].toString();
-                }
 
-                // Extract the "Result" pod for plain text
-                if (podObject.contains("title") && podObject["title"].toString() == "Result") {
+                // Handle "Indefinite integral" pod
+                if (podId == "IndefiniteIntegral" && indefiniteIntegralResult.isEmpty()) {
                     if (podObject.contains("subpods")) {
                         QJsonArray subpodsArray = podObject["subpods"].toArray();
-                        for (const QJsonValue &subpodValue : subpodsArray) {
-                            QJsonObject subpodObject = subpodValue.toObject();
+                        if (!subpodsArray.isEmpty()) {
+                            QJsonObject subpodObject = subpodsArray[0].toObject();
                             if (subpodObject.contains("plaintext")) {
-                                plainTextResult = subpodObject["plaintext"].toString();
-                                qDebug() << "Plaintext Result: " << plainTextResult;
+                                indefiniteIntegralResult = subpodObject["plaintext"].toString();
+                                qDebug() << "IndefiniteIntegral Result: " << indefiniteIntegralResult;
                             }
                         }
                     }
                 }
 
-                // Extract the "Plot" or "Plots" pod for graph images
-                if (podObject.contains("title") &&
-                    (podObject["title"].toString() == "Plot" || podObject["title"].toString() == "Plots")) {
+                // Handle "Definite integral" pod
+                if (podTitle == "Definite integral" && definiteIntegralResult.isEmpty()) {
+                    if (podObject.contains("subpods")) {
+                        QJsonArray subpodsArray = podObject["subpods"].toArray();
+                        if (!subpodsArray.isEmpty()) {
+                            QJsonObject subpodObject = subpodsArray[0].toObject();
+                            if (subpodObject.contains("plaintext")) {
+                                definiteIntegralResult = subpodObject["plaintext"].toString();
+                                qDebug() << "DefiniteIntegral Result: " << definiteIntegralResult;
+                            }
+                        }
+                    }
+                }
 
+                // Handle "Derivative" pod
+                if (podId == "Derivative" && derivativeResult.isEmpty()) {
+                    if (podObject.contains("subpods")) {
+                        QJsonArray subpodsArray = podObject["subpods"].toArray();
+                        if (!subpodsArray.isEmpty()) {
+                            QJsonObject subpodObject = subpodsArray[0].toObject();
+                            if (subpodObject.contains("plaintext")) {
+                                derivativeResult = subpodObject["plaintext"].toString();
+                                qDebug() << "Derivative Result: " << derivativeResult;
+                            }
+                        }
+                    }
+                }
+
+                // Handle "Result" pod for factoring
+                if (podTitle == "Result" && factoringResult.isEmpty()) {
+                    if (podObject.contains("subpods")) {
+                        QJsonArray subpodsArray = podObject["subpods"].toArray();
+                        if (!subpodsArray.isEmpty()) {
+                            QJsonObject subpodObject = subpodsArray[0].toObject();
+                            if (subpodObject.contains("plaintext")) {
+                                factoringResult = subpodObject["plaintext"].toString();
+                                qDebug() << "Factoring Result: " << factoringResult;
+                            }
+                        }
+                    }
+                }
+
+                // Handle graph images
+                if (podTitle.contains("Plot") || podTitle.contains("Visual representation")) {
                     if (podObject.contains("subpods")) {
                         QJsonArray subpodsArray = podObject["subpods"].toArray();
                         for (const QJsonValue &subpodValue : subpodsArray) {
                             QJsonObject subpodObject = subpodValue.toObject();
                             if (subpodObject.contains("img")) {
-                                QJsonObject imgObject = subpodObject["img"].toObject();
-                                QString graphImageUrl = imgObject["src"].toString();
+                                QString graphImageUrl = subpodObject["img"].toObject()["src"].toString();
                                 graphImageUrls.append(graphImageUrl);
                                 qDebug() << "Graph Image URL: " << graphImageUrl;
                             }
@@ -404,22 +447,25 @@ void MainWindow::processApiResponse(const QJsonObject &jsonObj)
                 }
             }
 
-            // Display the plain text result if found
-            if (!plainTextResult.isEmpty()) {
-                ui->ResultLabel->setText("The solution is: "+plainTextResult);
+            // Display results based on priority
+            if (!factoringResult.isEmpty()) {
+                ui->ResultLabel->setText("The factored form is: " + factoringResult);
+            } else if (!definiteIntegralResult.isEmpty()) {
+                ui->ResultLabel->setText("The definite integral is: " + definiteIntegralResult);
+            } else if (!indefiniteIntegralResult.isEmpty()) {
+                ui->ResultLabel->setText("The indefinite integral is: " + indefiniteIntegralResult);
+            } else if (!derivativeResult.isEmpty()) {
+                ui->ResultLabel->setText("The derivative is: " + derivativeResult);
+            } else {
+                ui->ResultLabel->setText("No results found.");
+                qDebug() << "No usable results found in response.";
             }
 
-            // Display all graph images if found
+            // Display graph images if available
             if (!graphImageUrls.isEmpty()) {
                 for (const QString &url : graphImageUrls) {
-                    displayGraph(url); // Assuming displayGraph handles showing images
+                    displayGraph(url);
                 }
-            }
-
-            // If no results, show a message
-            if (plainTextResult.isEmpty() && graphImageUrls.isEmpty()) {
-                qDebug() << "No usable results found in response.";
-                ui->ResultLabel->setText("No results found.");
             }
         } else {
             qDebug() << "No 'pods' found in response.";
@@ -430,7 +476,6 @@ void MainWindow::processApiResponse(const QJsonObject &jsonObj)
         ui->ResultLabel->setText("No results found.");
     }
 }
-
 
 
 
@@ -469,4 +514,20 @@ void MainWindow::displayGraph(const QString &imageUrl)
     });
 }
 
+QString MainWindow::convertTextToNumber(const QString &text) {
+    static const QMap<QString, QString> numberMap = {
+        {"zero", "0"},
+        {"one", "1"},
+        {"two", "2"},
+        {"three", "3"},
+        {"four", "4"},
+        {"five", "5"},
+        {"six", "6"},
+        {"seven", "7"},
+        {"eight", "8"},
+        {"nine", "9"},
+        {"ten", "10"}
+    };
 
+    return numberMap.value(text.toLower(), text);
+}
