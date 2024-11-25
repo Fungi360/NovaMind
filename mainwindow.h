@@ -41,13 +41,15 @@ private slots:
     void onSubmitButtonclicked();// Slot for submitting queries
     void displayGraph(const QString &imageUrl); // Display the graph image
 
- private:
+private:
     Ui::MainWindow *ui;
     void setupConnections(); // Helper to connect signals to slots
     void setupDropdownMenus(); // Set up dropdown menus
     QNetworkAccessManager *networkManager;
     void sendQueryToAPI(const QString &query);
+    QString convertTextToNumber(const QString &text);
     void processApiResponse(const QJsonObject &jsonObj); // Method for processing API response
+
 
 };
 #endif // MAINWINDOW_H
