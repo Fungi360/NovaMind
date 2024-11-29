@@ -17,29 +17,35 @@
 #include <QMovie>
 #include <QLabel>
 
+
+//test comment
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //connect(ui->pushButton_Add, &QPushButton::clicked, this, &MainWindow::onOperatorButtonClicked);
 
     // Connect the SubmitButton to the slot
     connect(ui->SubmitButton, &QPushButton::clicked, this, &MainWindow::onSubmitButtonclicked);
-
 
     // Initialize networkManager and connect to onQueryResult slot
     networkManager = new QNetworkAccessManager(this);
     connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::onQueryResult);
 
-    setupConnections(); // Set up button connections
-    setupDropdownMenus(); // Set up the dropdown menu
+    QFrame *Frame = ui->Frame; //Adds mouse tracking in .ui
+    Frame->setMouseTracking(true);//enabled mouse tracking
+
+    // Setup connections for buttons and dropdowns
+    setupConnections();
+    setupDropdownMenus();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
 
 void MainWindow::setupConnections()
 {
@@ -83,7 +89,7 @@ void MainWindow::setupDropdownMenus()
 
     ui->toolButton_Arithmetic->setMenu(arithmeticMenu);
     ui->toolButton_Arithmetic->setPopupMode(QToolButton::InstantPopup);
-    qDebug() << "Menu attached to toolButton_Arithmetic!";
+    //qDebug() << "Menu attached to toolButton_Arithmetic!";
 
     // Algebra Menu
     QMenu *algebraMenu = new QMenu(this);
@@ -112,7 +118,7 @@ void MainWindow::setupDropdownMenus()
 
     ui->toolButton_Algebra->setMenu(algebraMenu);
     ui->toolButton_Algebra->setPopupMode(QToolButton::InstantPopup);
-    qDebug() << "Menu attached to toolButton_Algebra!";
+    //qDebug() << "Menu attached to toolButton_Algebra!";
 
     // Trigonometry Menu
     QMenu *trigonometryMenu = new QMenu(this);
@@ -237,7 +243,7 @@ void MainWindow::onArithmeticSelected(const QString &operation)
 
 void MainWindow::onCalculusSelected(const QString &operation)
 {
-    qDebug() << "Arithmetic Selected operation: " << operation;
+    qDebug() << "Calculus Selected operation: " << operation;
     ui->EquationEdit->setText(ui->EquationEdit->toPlainText() + " " + operation + " ");
 }
 
@@ -265,8 +271,7 @@ void MainWindow::onSymbolSelected(const QString &operation)
     ui->EquationEdit->setText(ui->EquationEdit->toPlainText() + " " + operation + " ");
 }
 
-void MainWindow::onSubmitButtonclicked()
-{
+void MainWindow::onSubmitButtonclicked() {
     qDebug() << "Submit button clicked!";
 
     QString queryText = ui->EquationEdit->toPlainText();
@@ -278,10 +283,36 @@ void MainWindow::onSubmitButtonclicked()
     qDebug() << "Query text: " << queryText;
 
     // Send the query to WolframAlpha API
-    sendQueryToAPI(queryText);
+    sendQueryToAPI(queryText, 0); // Start from index 0 for the first query
 }
 
-void MainWindow::sendQueryToAPI(const QString &query)
+// Function to send the query to the WolframAlpha API
+void MainWindow::sendQueryToAPI(const QString &query, int index)
+{
+    // Split the query into parts based on commas
+    QStringList queries = query.split(',');
+
+    // Filter out any empty query parts (e.g., if there are consecutive commas)
+    queries.removeAll("");
+
+    // Check if the list is empty after removing empty parts
+    if (queries.isEmpty()) {
+        qDebug() << "No valid queries found.";
+        return;
+    }
+
+    // If there's only one query, execute it once
+    if (queries.size() == 1) {
+        sendSingleQuery(queries.first());
+    } else {
+        // Otherwise, process each query in the list using the index
+        for (int i = index; i < queries.size(); ++i) {
+            sendSingleQuery(queries[i]);
+        }
+    }
+}
+
+void MainWindow::sendSingleQuery(const QString &query)
 {
 
     QString processedQuery = query;
@@ -297,12 +328,12 @@ void MainWindow::sendQueryToAPI(const QString &query)
     // Construct the API URL
     QUrl apiUrl("https://api.wolframalpha.com/v2/query");
 
-    // Set up query parameters
+    // Set up query parameters with your API key
     QUrlQuery params;
-    params.addQueryItem("input", encodedQuery);   // The query input (encoded)
-    params.addQueryItem("appid", "3T3KQ7-9UT5PXLWH3");  // Your WolframAlpha App ID
-    params.addQueryItem("format", "plaintext,image,latex,raw");  // Request plaintext, image, latex, and raw formats
-    params.addQueryItem("output", "JSON");  // Request JSON output
+    params.addQueryItem("input", encodedQuery);
+    params.addQueryItem("appid", "3T3KQ7-9UT5PXLWH3");  // Wolfram Alpha App ID
+    params.addQueryItem("format", "plaintext,image,latex,raw"); //Format to return from API
+    params.addQueryItem("output", "JSON"); //Desired Output
 
     // Set the query parameters on the URL
     apiUrl.setQuery(params);
@@ -314,47 +345,73 @@ void MainWindow::sendQueryToAPI(const QString &query)
     qDebug() << "Request URL: " << apiUrl.toString();
 
     // Send the request using networkManager
-    networkManager->get(request);
+    QNetworkReply *reply = networkManager->get(request);
+
+    // Handle the reply once it's finished
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        // Print out the raw response data for debugging
+        QByteArray rawData = reply->readAll();
+        qDebug() << "Raw Response: " << rawData;
+
+        // Parse the JSON response if it's valid
+        if (reply->error() == QNetworkReply::NoError) {
+            QJsonDocument doc = QJsonDocument::fromJson(rawData);
+            if (!doc.isNull()) {
+                QJsonObject jsonObj = doc.object();
+                this->processApiResponse(jsonObj);  // Process the valid JSON response
+            } else {
+                qDebug() << "Invalid JSON response.";
+            }
+        } else {
+            qDebug() << "Error in network request: " << reply->errorString();
+        }
+
+        // Clean up the reply object
+        reply->deleteLater();
+    });
 }
 
 
-void MainWindow::onQueryResult(QNetworkReply *reply)
-{
-    // Check for errors in the reply
+// Slot to handle the query result when finished
+void MainWindow::onQueryResult() {
+    QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
+
+    if (!reply) {
+        qDebug() << "Failed to get QNetworkReply from sender!";
+        return;
+    }
+
     if (reply->error() != QNetworkReply::NoError) {
         qDebug() << "Network error:" << reply->errorString();
         reply->deleteLater();
         return;
     }
 
-    // Get the raw JSON response
     QByteArray responseData = reply->readAll();
-
-    // Debugging: Log the raw response data
-    qDebug() << "Raw API response data:" << responseData;
-
-    // Parse the JSON response into a QJsonDocument
     QJsonDocument doc = QJsonDocument::fromJson(responseData);
 
     if (!doc.isObject()) {
-        qDebug() << "Failed to parse JSON response.";
+        qDebug() << "Invalid JSON response.";
         reply->deleteLater();
         return;
     }
 
-    // Convert the parsed document to a QJsonObject
     QJsonObject jsonObj = doc.object();
-
-    // Process the API response
     processApiResponse(jsonObj);
-
-    // Clean up the network reply
     reply->deleteLater();
 }
 
+
+// Function to process the WolframAlpha API response
 void MainWindow::processApiResponse(const QJsonObject &jsonObj)
 {
-    qDebug() << "Processing API response...";
+    // Check if the response is valid and contains the expected 'queryresult' object
+    if (jsonObj.isEmpty()) {
+        qDebug() << "Invalid or empty JSON response!";
+        ui->ResultLabel->setText("Invalid or empty response received.");
+        return;
+    }
+
 
     if (jsonObj.contains("queryresult")) {
         QJsonObject queryResult = jsonObj["queryresult"].toObject();
@@ -470,49 +527,198 @@ void MainWindow::processApiResponse(const QJsonObject &jsonObj)
         } else {
             qDebug() << "No 'pods' found in response.";
             ui->ResultLabel->setText("No results found.");
-        }
-    } else {
-        qDebug() << "No 'queryresult' found in response.";
+
+    if (!jsonObj.contains("queryresult")) {
+        qDebug() << "No 'queryresult' found in the response.";
         ui->ResultLabel->setText("No results found.");
+        return;
+    }
+
+    QJsonObject queryResult = jsonObj["queryresult"].toObject();
+
+    // Check if "pods" array is present
+    if (!queryResult.contains("pods")) {
+        qDebug() << "No 'pods' found in response.";
+        ui->ResultLabel->setText("No results found.");
+        return;
+    }
+
+    QJsonArray podsArray = queryResult["pods"].toArray();
+
+    QString plainTextResult;
+    QList<QString> graphImageUrls; // To store multiple graph images
+    QString trigResult; // For storing trigonometric results
+    QString calcResult; // For storing calculus-related results
+
+    // Iterate through the pods
+    for (const QJsonValue &podValue : podsArray) {
+        QJsonObject podObject = podValue.toObject();
+
+        // Log pod titles for debugging
+        if (podObject.contains("title")) {
+            qDebug() << "Pod Title: " << podObject["title"].toString();
+
+        }
+
+        // Extract the "Result" pod for plain text solution
+        if (podObject.contains("title") && podObject["title"].toString().contains("Result", Qt::CaseInsensitive)) {
+            if (podObject.contains("subpods")) {
+                QJsonArray subpodsArray = podObject["subpods"].toArray();
+                for (const QJsonValue &subpodValue : subpodsArray) {
+                    QJsonObject subpodObject = subpodValue.toObject();
+                    if (subpodObject.contains("plaintext")) {
+                        plainTextResult = subpodObject["plaintext"].toString();
+                        qDebug() << "Plaintext Result: " << plainTextResult;
+                    }
+                }
+            }
+        }
+
+        // Extract graph images from plot-related pods only
+        if (podObject.contains("title") && (
+                podObject["title"].toString().contains("Plot", Qt::CaseInsensitive) ||
+                podObject["title"].toString().contains("Implicit Plot", Qt::CaseInsensitive))) {
+
+            if (podObject.contains("subpods")) {
+                QJsonArray subpodsArray = podObject["subpods"].toArray();
+                for (const QJsonValue &subpodValue : subpodsArray) {
+                    QJsonObject subpodObject = subpodValue.toObject();
+
+                    // Check if there is an image in the subpod
+                    if (subpodObject.contains("img")) {
+                        QJsonObject imgObject = subpodObject["img"].toObject();
+                        QString graphImageUrl = imgObject["src"].toString();
+                        QString graphTitle = imgObject["alt"].toString();
+
+                        // Only add graphs related to the plot
+                        if (!graphImageUrl.isEmpty() && graphTitle.contains("plot", Qt::CaseInsensitive)) {
+                            graphImageUrls.append(graphImageUrl);
+                            qDebug() << "Graph Image URL: " << graphImageUrl;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Check for Trigonometric Results
+        if (podObject.contains("title") && (
+                podObject["title"].toString().contains("Trig", Qt::CaseInsensitive) ||
+                podObject["title"].toString().contains("Sine", Qt::CaseInsensitive) ||
+                podObject["title"].toString().contains("Cosine", Qt::CaseInsensitive) ||
+                podObject["title"].toString().contains("Tangent", Qt::CaseInsensitive))) {
+
+            if (podObject.contains("subpods")) {
+                QJsonArray subpodsArray = podObject["subpods"].toArray();
+                for (const QJsonValue &subpodValue : subpodsArray) {
+                    QJsonObject subpodObject = subpodValue.toObject();
+                    if (subpodObject.contains("plaintext")) {
+                        trigResult = subpodObject["plaintext"].toString();
+                        qDebug() << "Trigonometric Result: " << trigResult;
+                    }
+                }
+            }
+        }
+
+        // Check for Calculus-related Results (Integrals, Derivatives, Limits, Summations)
+        if (podObject.contains("title") && (
+                podObject["title"].toString().contains("Integral", Qt::CaseInsensitive) ||
+                podObject["title"].toString().contains("Derivative", Qt::CaseInsensitive) ||
+                podObject["title"].toString().contains("Summation", Qt::CaseInsensitive) ||
+                podObject["title"].toString().contains("Limit", Qt::CaseInsensitive))) {
+
+            if (podObject.contains("subpods")) {
+                QJsonArray subpodsArray = podObject["subpods"].toArray();
+                for (const QJsonValue &subpodValue : subpodsArray) {
+                    QJsonObject subpodObject = subpodValue.toObject();
+                    if (subpodObject.contains("plaintext")) {
+                        calcResult = subpodObject["plaintext"].toString();
+                        qDebug() << "Calculus Result: " << calcResult;
+                    }
+                }
+            }
+        }
+    }
+
+    // Display the plain text result if found
+    if (!plainTextResult.isEmpty()) {
+        ui->ResultLabel->setText("The solution is: " + plainTextResult);
+    }
+
+    // Display all relevant graph images if found
+    if (!graphImageUrls.isEmpty()) {
+        for (const QString &url : graphImageUrls) {
+            displayGraph(url); // Assuming displayGraph handles showing images
+        }
+    }
+
+    // Display the trigonometric result if found
+    if (!trigResult.isEmpty()) {
+        ui->ResultLabel->setText("Trigonometric result: " + trigResult);
+    }
+
+    // Display the calculus result if found
+    if (!calcResult.isEmpty()) {
+        ui->ResultLabel->setText("Calculus result: " + calcResult);
+    }
+
+    // If no results, show a message
+    if (plainTextResult.isEmpty() && graphImageUrls.isEmpty() && trigResult.isEmpty() && calcResult.isEmpty()) {
+        qDebug() << "No usable results found in response.";
+        ui->ResultLabel->setText("No results found.");
+    }
+}
     }
 }
 
 
 
+
+
 void MainWindow::displayGraph(const QString &imageUrl)
 {
-    // Check if the image URL is valid
-    qDebug() << "Displaying image from URL:" << imageUrl;
+    // Function to display the graph from a URL
 
-    // Create a network request to fetch the image
-    QNetworkRequest request(imageUrl);
-    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
-    QNetworkReply *reply = manager->get(request);
+        // Check if the image URL is valid
+        qDebug() << "Displaying image from URL:" << imageUrl;
 
-    // Connect the finished signal to a lambda function to handle the response
-    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-        if (reply->error() == QNetworkReply::NoError) {
-            // If there is no error, read the data and load the image
-            QByteArray imageData = reply->readAll();
-            QPixmap pixmap;
-            if (pixmap.loadFromData(imageData)) {
-                // Successfully loaded the image
-                ui->ResultImageLabel->setPixmap(pixmap);
-                ui->ResultImageLabel->setScaledContents(true);  // Optionally scale the image to fit the label
-                qDebug() << "Image loaded successfully!";
+        // Create a network request to fetch the image
+        QNetworkRequest request(imageUrl);
+
+        // Create QNetworkAccessManager as a member of the MainWindow to avoid creating it repeatedly
+        QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+
+        // Send the request to fetch the image
+        QNetworkReply *reply = manager->get(request);
+
+        // Connect the finished signal to a lambda function to handle the response
+        connect(reply, &QNetworkReply::finished, this, [this, reply, manager]() {
+            // Ensure the network manager stays alive until the reply is finished
+            if (reply->error() == QNetworkReply::NoError) {
+                // If there is no error, read the data and load the image
+                QByteArray imageData = reply->readAll();
+                QPixmap pixmap;
+                if (pixmap.loadFromData(imageData)) {
+                    // Successfully loaded the image
+                    ui->ResultImageLabel->setPixmap(pixmap);
+                    ui->ResultImageLabel->setScaledContents(true);  // Optionally scale the image to fit the label
+                    qDebug() << "Image loaded successfully!";
+                } else {
+                    // Failed to load the image data
+                    qDebug() << "Failed to load image from the received data";
+                }
             } else {
-                // Failed to load the image data
-                qDebug() << "Failed to load image from the received data";
+                // Handle error if the image failed to load
+                qDebug() << "Error loading image:" << reply->errorString();
             }
-        } else {
-            // Handle error if the image failed to load
-            qDebug() << "Error loading image:" << reply->errorString();
-        }
 
-        // Clean up the reply object after use
-        reply->deleteLater();
-    });
-}
+            // Clean up the reply object after use
+            reply->deleteLater();
+
+            // Clean up the manager object after use (optional, depends on your needs)
+            manager->deleteLater();
+        });
+    }
+
 
 QString MainWindow::convertTextToNumber(const QString &text) {
     static const QMap<QString, QString> numberMap = {
@@ -531,3 +737,4 @@ QString MainWindow::convertTextToNumber(const QString &text) {
 
     return numberMap.value(text.toLower(), text);
 }
+

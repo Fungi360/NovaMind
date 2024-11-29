@@ -28,25 +28,31 @@
      <widget class="QFrame" name="Frame">
       <property name="styleSheet">
        <string notr="true">QFrame {
-    background-color: #f0f0f0;
+    background-color: #41b6e6;  /* Primary Blue Background */
     border: 2px solid #ccc;
     padding: 10px;
     border-radius: 5px;
 }
-
-QPushButton {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 8px;
-}</string>
+        QPushButton {
+            background-color: #db3eb1;  /* Neon Pink */
+            border: none;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        QPushButton:hover {
+            background-color: #db3eb1;  /* Neon Pink */
+        }
+        QTextEdit, QLineEdit {
+            border: 1px solid #41b6e6;  /* Light Blue Border */
+            background-color: #e6f7ff;  /* Light visible color */
+            color: #000000;  /* Black text for better readability */
+        }</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Shape::StyledPanel</enum>
@@ -62,6 +68,16 @@ QPushButton {
            <family>Stencil</family>
            <pointsize>28</pointsize>
           </font>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+        color: #000000;  /* Black */
+        text-align: center;
+        background-color: transparent;
+}</string>
          </property>
          <property name="text">
           <string>NovaMind</string>
@@ -95,12 +111,30 @@ QPushButton {
            <property name="text">
             <string>Arithmetic</string>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+    background-color: #db3eb1;  /* Neon Pink */
+    color: #ffffff;  /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}</string>
+           </property>
           </widget>
          </item>
          <item>
           <widget class="QToolButton" name="toolButton_Algebra">
            <property name="text">
             <string>Algebra</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+    background-color: #db3eb1;  /* Neon Pink */
+    color: #ffffff;  /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}</string>
            </property>
           </widget>
          </item>
@@ -109,12 +143,30 @@ QPushButton {
            <property name="text">
             <string>Trigonometry</string>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+    background-color: #db3eb1;  /* Neon Pink */
+    color: #ffffff;  /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}</string>
+           </property>
           </widget>
          </item>
          <item>
           <widget class="QToolButton" name="toolButton_Calculus">
            <property name="text">
             <string>Calculus</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+    background-color: #db3eb1;  /* Neon Pink */
+    color: #ffffff;  /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}</string>
            </property>
           </widget>
          </item>
@@ -123,12 +175,30 @@ QPushButton {
            <property name="text">
             <string>Graph</string>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+    background-color: #db3eb1;  /* Neon Pink */
+    color: #ffffff;  /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}</string>
+           </property>
           </widget>
          </item>
          <item>
           <widget class="QToolButton" name="toolButton_Symbols">
            <property name="text">
             <string>Symbols</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {
+    background-color: #db3eb1;  /* Neon Pink */
+    color: #ffffff;  /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}</string>
            </property>
           </widget>
          </item>
@@ -142,20 +212,28 @@ QPushButton {
          <property name="frameShadow">
           <enum>QFrame::Shadow::Raised</enum>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QFrame {
+    border: 1px solid #41b6e6;  /* Light Blue Border for Output Labels */
+}</string>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="SubmitButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: #D3D3D3;
-    color: Black;
-    border: 1px solid #FFFFFF;
+    background-color: #db3eb1;  /* Neon Pink */
+    color: #fffff1;  /* White */
+    border: 1px solid #ffffff;  /* White Border */
     border-radius: 10px;
     padding: 6px 10px;
     font-size: 12px;
     font-weight: bold;
-}</string>
+}
+        QPushButton:hover {
+            background-color: #db3eb1;  /* Neon Pink */
+        }</string>
          </property>
          <property name="text">
           <string>Submit</string>

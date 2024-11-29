@@ -37,7 +37,7 @@ private slots:
     void onCalculusSelected(const QString &operation);  // Calculus slot
     void onGraphSelected(const QString &operation);  // Graph slot
     void onSymbolSelected(const QString &symbol);
-    void onQueryResult(QNetworkReply *reply);  // Slot for handling API responses
+    void onQueryResult();  // Slot for handling API responses
     void onSubmitButtonclicked();// Slot for submitting queries
     void displayGraph(const QString &imageUrl); // Display the graph image
 
@@ -46,10 +46,11 @@ private:
     void setupConnections(); // Helper to connect signals to slots
     void setupDropdownMenus(); // Set up dropdown menus
     QNetworkAccessManager *networkManager;
-    void sendQueryToAPI(const QString &query);
+    //void sendQueryToAPI(const QString &query);
     QString convertTextToNumber(const QString &text);
     void processApiResponse(const QJsonObject &jsonObj); // Method for processing API response
-
+    void sendQueryToAPI(const QString &query, int index = 0);
+    void sendSingleQuery(const QString &query); // Helper function to send one query
 
 };
 #endif // MAINWINDOW_H
