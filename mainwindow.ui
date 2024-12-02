@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>714</width>
-    <height>498</height>
+    <height>543</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -79,8 +79,14 @@
         background-color: transparent;
 }</string>
          </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Plain</enum>
+         </property>
          <property name="text">
           <string>NovaMind</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -88,6 +94,9 @@
         <widget class="QLabel" name="label">
          <property name="text">
           <string>Input Math Equation:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -108,9 +117,6 @@
         <layout class="QHBoxLayout" name="buttonLayout">
          <item>
           <widget class="QToolButton" name="toolButton_Arithmetic">
-           <property name="text">
-            <string>Arithmetic</string>
-           </property>
            <property name="styleSheet">
             <string notr="true">QToolButton {
     background-color: #db3eb1;  /* Neon Pink */
@@ -119,14 +125,14 @@
     border-radius: 5px;
     padding: 5px;
 }</string>
+           </property>
+           <property name="text">
+            <string>Arithmetic</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QToolButton" name="toolButton_Algebra">
-           <property name="text">
-            <string>Algebra</string>
-           </property>
            <property name="styleSheet">
             <string notr="true">QToolButton {
     background-color: #db3eb1;  /* Neon Pink */
@@ -135,14 +141,14 @@
     border-radius: 5px;
     padding: 5px;
 }</string>
+           </property>
+           <property name="text">
+            <string>Algebra</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QToolButton" name="toolButton_Trigonometry">
-           <property name="text">
-            <string>Trigonometry</string>
-           </property>
            <property name="styleSheet">
             <string notr="true">QToolButton {
     background-color: #db3eb1;  /* Neon Pink */
@@ -151,14 +157,14 @@
     border-radius: 5px;
     padding: 5px;
 }</string>
+           </property>
+           <property name="text">
+            <string>Trigonometry</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QToolButton" name="toolButton_Calculus">
-           <property name="text">
-            <string>Calculus</string>
-           </property>
            <property name="styleSheet">
             <string notr="true">QToolButton {
     background-color: #db3eb1;  /* Neon Pink */
@@ -167,14 +173,14 @@
     border-radius: 5px;
     padding: 5px;
 }</string>
+           </property>
+           <property name="text">
+            <string>Calculus</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QToolButton" name="toolButton_Graph">
-           <property name="text">
-            <string>Graph</string>
-           </property>
            <property name="styleSheet">
             <string notr="true">QToolButton {
     background-color: #db3eb1;  /* Neon Pink */
@@ -183,14 +189,14 @@
     border-radius: 5px;
     padding: 5px;
 }</string>
+           </property>
+           <property name="text">
+            <string>Graph</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QToolButton" name="toolButton_Symbols">
-           <property name="text">
-            <string>Symbols</string>
-           </property>
            <property name="styleSheet">
             <string notr="true">QToolButton {
     background-color: #db3eb1;  /* Neon Pink */
@@ -199,6 +205,9 @@
     border-radius: 5px;
     padding: 5px;
 }</string>
+           </property>
+           <property name="text">
+            <string>Symbols</string>
            </property>
           </widget>
          </item>
@@ -206,16 +215,16 @@
        </item>
        <item>
         <widget class="QFrame" name="OutputFrame">
+         <property name="styleSheet">
+          <string notr="true">QFrame {
+    border: 1px solid #41b6e6;  /* Light Blue Border for Output Labels */
+}</string>
+         </property>
          <property name="frameShape">
           <enum>QFrame::Shape::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Shadow::Raised</enum>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QFrame {
-    border: 1px solid #41b6e6;  /* Light Blue Border for Output Labels */
-}</string>
          </property>
         </widget>
        </item>

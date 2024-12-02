@@ -77,6 +77,7 @@ Future Enhancements
 Add support for step-by-step solutions.
 Enhance error handling for invalid queries.
 Improve graph visualization with interactive elements.
+Add a profile for saving data.
 Contribution
 Contributions are welcome! Please fork the repository and submit a pull request.
 
