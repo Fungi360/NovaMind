@@ -13,8 +13,6 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QFile>
-#include <QImageReader>
-#include <QMovie>
 #include <QLabel>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -540,46 +538,46 @@ void MainWindow::displayGraph(const QString &imageUrl)
 {
     // Function to display the graph from a URL
 
-        // Check if the image URL is valid
-        qDebug() << "Displaying image from URL:" << imageUrl;
+    // Check if the image URL is valid
+    qDebug() << "Displaying image from URL:" << imageUrl;
 
-        // Create a network request to fetch the image
-        QNetworkRequest request(imageUrl);
+    // Create a network request to fetch the image
+    QNetworkRequest request(imageUrl);
 
-        // Create QNetworkAccessManager as a member of the MainWindow to avoid creating it repeatedly
-        QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+    // Create QNetworkAccessManager as a member of the MainWindow to avoid creating it repeatedly
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
 
-        // Send the request to fetch the image
-        QNetworkReply *reply = manager->get(request);
+    // Send the request to fetch the image
+    QNetworkReply *reply = manager->get(request);
 
-        // Connect the finished signal to a lambda function to handle the response
-        connect(reply, &QNetworkReply::finished, this, [this, reply, manager]() {
-            // Ensure the network manager stays alive until the reply is finished
-            if (reply->error() == QNetworkReply::NoError) {
-                // If there is no error, read the data and load the image
-                QByteArray imageData = reply->readAll();
-                QPixmap pixmap;
-                if (pixmap.loadFromData(imageData)) {
-                    // Successfully loaded the image
-                    ui->ResultImageLabel->setPixmap(pixmap);
-                    ui->ResultImageLabel->setScaledContents(true);  // Optionally scale the image to fit the label
-                    qDebug() << "Image loaded successfully!";
-                } else {
-                    // Failed to load the image data
-                    qDebug() << "Failed to load image from the received data";
-                }
+    // Connect the finished signal to a lambda function to handle the response
+    connect(reply, &QNetworkReply::finished, this, [this, reply, manager]() {
+        // Ensure the network manager stays alive until the reply is finished
+        if (reply->error() == QNetworkReply::NoError) {
+            // If there is no error, read the data and load the image
+            QByteArray imageData = reply->readAll();
+            QPixmap pixmap;
+            if (pixmap.loadFromData(imageData)) {
+                // Successfully loaded the image
+                ui->ResultImageLabel->setPixmap(pixmap);
+                ui->ResultImageLabel->setScaledContents(true);  // Optionally scale the image to fit the label
+                qDebug() << "Image loaded successfully!";
             } else {
-                // Handle error if the image failed to load
-                qDebug() << "Error loading image:" << reply->errorString();
+                // Failed to load the image data
+                qDebug() << "Failed to load image from the received data";
             }
+        } else {
+            // Handle error if the image failed to load
+            qDebug() << "Error loading image:" << reply->errorString();
+        }
 
-            // Clean up the reply object after use
-            reply->deleteLater();
+        // Clean up the reply object after use
+        reply->deleteLater();
 
-            // Clean up the manager object after use (optional, depends on your needs)
-            manager->deleteLater();
-        });
-    }
+        // Clean up the manager object after use (optional, depends on your needs)
+        manager->deleteLater();
+    });
+}
 
 
 QString MainWindow::convertTextToNumber(const QString &text) {
