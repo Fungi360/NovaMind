@@ -101,19 +101,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="EquationEdit">
-         <property name="maximumSize">
-          <size>
-           <width>2200</width>
-           <height>100</height>
-          </size>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Shadow::Sunken</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
         <layout class="QHBoxLayout" name="buttonLayout">
          <item>
           <widget class="QToolButton" name="toolButton_Arithmetic">
@@ -225,6 +212,19 @@
          </property>
          <property name="frameShadow">
           <enum>QFrame::Shadow::Raised</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="EquationEdit">
+         <property name="maximumSize">
+          <size>
+           <width>2200</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Sunken</enum>
          </property>
         </widget>
        </item>

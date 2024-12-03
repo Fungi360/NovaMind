@@ -46,8 +46,6 @@ private:
     void setupConnections(); // Helper to connect signals to slots
     void setupDropdownMenus(); // Set up dropdown menus
     QNetworkAccessManager *networkManager;
-    //void sendQueryToAPI(const QString &query);
-    QString convertTextToNumber(const QString &text);
     void processApiResponse(const QJsonObject &jsonObj); // Method for processing API response
     void sendQueryToAPI(const QString &query, int index = 0);
     void sendSingleQuery(const QString &query); // Helper function to send one query

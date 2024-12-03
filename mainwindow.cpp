@@ -146,7 +146,7 @@ void MainWindow::setupDropdownMenus()
     // Calculus Menu
     QMenu *CalculusMenu = new QMenu(this);
     QAction *IntegralAction = new QAction("∫() dx", this);
-    QAction *DefiniteIntegralAction = new QAction("∫() from () to ()dx", this);
+    QAction *DefiniteIntegralAction = new QAction("∫ from () to () of ()dx", this);
     QAction *SummationAction = new QAction("∑", this);
     QAction *DerivitiveAction = new QAction("f'(x)", this);
     QAction *LimitAction = new QAction("lim ", this);
@@ -161,7 +161,7 @@ void MainWindow::setupDropdownMenus()
         onTrigonometrySelected("∫() dx");
     });
     connect(DefiniteIntegralAction, &QAction::triggered, this, [this]() {
-        onTrigonometrySelected("∫() from () to ()dx");
+        onTrigonometrySelected("∫ from () to () of ()dx");
     });
     connect(SummationAction, &QAction::triggered, this, [this]() {
         onTrigonometrySelected("∑");
@@ -415,6 +415,7 @@ void MainWindow::processApiResponse(const QJsonObject &jsonObj)
             QString derivativeResult;
             QString indefiniteIntegralResult;
             QString definiteIntegralResult;
+            QString limitResult;
             QList<QString> graphImageUrls; // To store graph images
 
             for (const QJsonValue &podValue : podsArray) {
@@ -473,8 +474,6 @@ void MainWindow::processApiResponse(const QJsonObject &jsonObj)
                             if (subpodObject.contains("plaintext")) {
                                 QString resultText = subpodObject["plaintext"].toString();
                                 qDebug() << "Raw Derivative Result: " << resultText;
-
-                                // Cleanup logic for derivative result
                                 if (resultText.contains("=")) {
                                     int equalsIndex = resultText.indexOf('=');
                                     QString rhs = resultText.mid(equalsIndex + 1).trimmed();
@@ -489,6 +488,26 @@ void MainWindow::processApiResponse(const QJsonObject &jsonObj)
                                 derivativeResult = resultText;
                             }
                         }
+                    }
+                }
+                if (podId == "Limit" && limitResult.isEmpty()) {
+                    qDebug() << "Found Limits Pod.";
+                    if (podObject.contains("subpods")) {
+                        QJsonArray subpodsArray = podObject["subpods"].toArray();
+                        qDebug() << "Subpods Array: " << subpodsArray;
+                        if (!subpodsArray.isEmpty()) {
+                            QJsonObject subpodObject = subpodsArray[0].toObject();
+                            if (subpodObject.contains("plaintext")) {
+                                limitResult = subpodObject["plaintext"].toString();
+                                qDebug() << "Limit Result: " << limitResult;
+                            } else {
+                                qDebug() << "Plaintext not found in subpod.";
+                            }
+                        } else {
+                            qDebug() << "Subpods array is empty.";
+                        }
+                    } else {
+                        qDebug() << "Subpods not found in pod object.";
                     }
                 }
 
@@ -517,6 +536,8 @@ void MainWindow::processApiResponse(const QJsonObject &jsonObj)
                 ui->ResultLabel->setText("The indefinite integral is: " + indefiniteIntegralResult);
             } else if (!derivativeResult.isEmpty()) {
                 ui->ResultLabel->setText("The derivative is: " + derivativeResult);
+            } else if (!limitResult.isEmpty()) {
+                ui->ResultLabel->setText("The Limit is: " + limitResult);
             } else {
                 ui->ResultLabel->setText("No results found.");
                 qDebug() << "No usable results found in response.";
@@ -578,23 +599,3 @@ void MainWindow::displayGraph(const QString &imageUrl)
         manager->deleteLater();
     });
 }
-
-
-QString MainWindow::convertTextToNumber(const QString &text) {
-    static const QMap<QString, QString> numberMap = {
-        {"zero", "0"},
-        {"one", "1"},
-        {"two", "2"},
-        {"three", "3"},
-        {"four", "4"},
-        {"five", "5"},
-        {"six", "6"},
-        {"seven", "7"},
-        {"eight", "8"},
-        {"nine", "9"},
-        {"ten", "10"}
-    };
-
-    return numberMap.value(text.toLower(), text);
-}
-
