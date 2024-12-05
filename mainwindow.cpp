@@ -41,12 +41,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
 void MainWindow::setupConnections()
 {
-    // Connect digit and feature buttons
+    // connect digit and feature buttons
     //connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::onDigitButtonClicked);
-    // Connect(ui->pushButton_Arithmetic, &QPushButton::clicked, this, &MainWindow::onDigitButtonClicked);
+    //connect(ui->pushButton_Arithmetic, &QPushButton::clicked, this, &MainWindow::onDigitButtonClicked);
     //connect(ui->pushButton_Algebra, &QPushButton::clicked, this, &MainWindow::onDigitButtonClicked);
     //connect(ui->pushButton_Trig, &QPushButton::clicked, this, &MainWindow::onDigitButtonClicked);
     //connect(ui->pushButton_Calculus, &QPushButton::clicked, this, &MainWindow::onDigitButtonClicked);
