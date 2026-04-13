@@ -1,6 +1,6 @@
 # YOUR_REPO
 
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/AidanKnutson/NovaMind/badge)](https://scorecard.dev/viewer/?uri=github.com/AidanKnutson/NovaMind)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Fungi360/NovaMind/badge)](https://scorecard.dev/viewer/?uri=github.com/Fungi360/NovaMind)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12500/badge)](https://www.bestpractices.dev/projects/12500)
 
 Short description of the project...
