@@ -1,3 +1,10 @@
+# YOUR_REPO
+
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/AidanKnutson/NovaMind/badge)](https://scorecard.dev/viewer/?uri=github.com/AidanKnutson/NovaMind)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12500/badge)](https://www.bestpractices.dev/projects/12500)
+
+Short description of the project...
+
 WolframAlpha Mathematical Query Interface
 This project is a Qt-based C++ GUI application that provides an intuitive interface to query mathematical expressions, solve problems, and visualize results using the WolframAlpha API. It features dropdown menus for different mathematical categories, a dynamic text editor for input, and integrated result display functionality.
 
